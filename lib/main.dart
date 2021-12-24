@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:facetagr/pages/auth.dart';
 import 'package:facetagr/pages/webview.dart';
 import 'package:facetagr/utliz/data_storage.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -18,7 +19,7 @@ import 'net/services.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  await Firebase.initializeApp();
   Directory appDocDir = await getApplicationDocumentsDirectory();
   Hive.init(appDocDir.path);
 

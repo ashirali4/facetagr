@@ -26,13 +26,12 @@ dynamic GetDeviceRegistraion() async {
 Future<void> registrationCheck() async {
   var data=await GetDeviceRegistraion();
   if(data['id']=='' || data['secret']==''){
-    DeviceRegistrationAPI();
+    await DeviceRegistrationAPI();
   }else{
     print("Device Already Registered with --> " );
     print("Client ID --- > " + data['id']);
     print("Client Secret --- > " + data['secret']);
     print("Device ID --- > " + data['deviceId']);
-
   }
 }
 

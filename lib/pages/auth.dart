@@ -22,12 +22,18 @@ class _AuthScreenState extends State<AuthScreen> {
     if (_formKey.currentState!.validate()) {
       var a =await AccessTokenAPI(username.text,password.text);
       if(!a['error']){
-        showToast('Logged In Successfully');
-        Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (BuildContext context) => WebViewOpener(url: a['content'])),
-                (Route<dynamic> route) => false
-        );
+        var token= await FirebaseTokenAPI();
+        if(!token['error'] && token['content']=="101"){
+          showToast('Logged In Successfully');
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (BuildContext context) => WebViewOpener(url: a['content'])),
+                  (Route<dynamic> route) => false
+          );
+        }else{
+          showToast(token['data']);
+        }
+
       }else{
         showToast('Something Went Wrong. Please Try Again');
       }
