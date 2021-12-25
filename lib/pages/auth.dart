@@ -88,6 +88,7 @@ class _AuthScreenState extends State<AuthScreen> {
             if (value == null || value.isEmpty) {
               return 'Please enter '+hintText;
             }
+
             return null;
           },
           decoration: InputDecoration(
